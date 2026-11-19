@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Heat Cover Studio — GTA 6-style multi-panel cover art</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">VH</span>
+    <div><h1>Vice Heat Cover Studio</h1>
+    <p>Your photo + a caption &rarr; a Vice City poster cover, exported as PNG.</p></div>
+  </div>
+  <div class="top-actions">
+    <button id="undoBtn" type="button" title="Undo (Ctrl+Z)">&#8617; Undo</button>
+    <button id="redoBtn" type="button" title="Redo (Ctrl+Y)">Redo &#8618;</button>
+  </div>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h2>1 &middot; Photos</h2>
+    <label class="upload">Add your photos
+      <input id="photoInput" type="file" accept="image/*" multiple>
+    </label>
+    <div id="photoStrip" class="photo-strip" role="listbox" aria-label="Photos"></div>
+    <p class="hint">Photos stay on your machine &mdash; nothing is uploaded.</p>
+
+    <h2>2 &middot; Layout</h2>
+    <div id="layoutGrid" class="layout-grid" role="radiogroup" aria-label="Layout"></div>
+
+    <h2>3 &middot; Colour grade</h2>
+    <div id="gradeGrid" class="grade-grid" role="radiogroup" aria-label="Colour grade"></div>
+
+    <h2>4 &middot; Caption</h2>
+    <label class="field">Title
+      <input id="titleInput" type="text" maxlength="24" value="VICE HEAT">
+    </label>
+    <label class="field">Neon subtitle
+      <input id="subtitleInput" type="text" maxlength="40" value="Neon nights in the city">
+    </label>
+    <label class="check"><input id="grainInput" type="checkbox" checked> Film grain</label>
+    <label class="check"><input id="vignetteInput" type="checkbox" checked> Vignette</label>
+
+    <h2>5 &middot; Selected panel</h2>
+    <p class="hint" id="panelHint">Click a panel on the cover to select it, then drag to pan.</p>
+    <div class="panel-tools">
+      <button id="cyclePhotoBtn" type="button">Swap photo</button>
+      <label class="zoom">Zoom
+        <input id="zoomInput" type="range" min="1" max="3" step="0.05" value="1.2">
+      </label>
+      <button id="resetPanelBtn" type="button">Reset panel</button>
+    </div>
+
+    <h2>6 &middot; Export</h2>
+    <div class="export-row">
+      <button id="exportAllBtn" type="button" class="primary">Export all 3 sizes &mdash; one click</button>
+    </div>
+    <div class="export-row sizes">
+      <button data-size="1080x1080" type="button">1080 &times; 1080</button>
+      <button data-size="1080x1350" type="button">1080 &times; 1350</button>
+      <button data-size="1920x1080" type="button">1920 &times; 1080</button>
+    </div>
+    <p id="status" role="status"></p>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <div class="canvas-wrap">
+      <canvas id="cover" width="1080" height="1080" aria-label="Live cover preview"></canvas>
+    </div>
+    <p class="stage-hint">Live preview &mdash; exactly what the PNG will look like.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
